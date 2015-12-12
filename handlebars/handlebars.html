@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="cats.css" media="screen" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div id="content"></div>
+    
+    <script id="template" type="text/x-handlebars-template">
+      
+      <!--<div class="entry" style="background-image: url('{{{Logo}}}');">-->
+
+
+      <div class="entry">  
+
+        <div class="logo">
+          <img src="{{{Logo}}}" alt="" style="width:32px;height:32px;"></a>
+        </div>
+
+        <h1>{{Company}}</h1>
+
+        <div class="body">
+        </div>
+
+        <div class="genres">
+          {{{Genres}}}
+        </div>
+
+        <div class="location">
+          {{{Location}}}, {{{People}}} people
+        </div>
+
+        <br>
+
+        <div class="games">
+          {{{Products}}}
+        </div>
+
+        <p></p>
+        <p></p>
+
+          <div class="link" style="text-align:center">
+            <a href="{{{FB}}}" target="_new"><img src="../icon-fb.png" alt="Facebook" style="width:32px;height:32px;"></a>
+            <a href="{{{Twitter}}}" target="_new"><img src="../icon-twitter.png" alt="Twitter" style="width:32px;height:32px;"></a>
+            <a href="mailto:{{{Contact}}}"><img src="../icon-email.png" alt="Email" style="width:32px;height:32px;"></a>
+          </div>
+
+      </div>
+    </script>
+
+    <!-- Don't need jQuery for Tabletop, but using it for this example -->
+    <script type="text/javascript" src="handlebars.js"></script>
+    <script type="text/javascript" src="../jquery.js"></script>
+    <script type="text/javascript" src="../tabletop.js"></script>
+    <script type="text/javascript">
+      //var public_spreadsheet_url = 'https://docs.google.com/spreadsheet/pub?hl=en_US&hl=en_US&key=0AmYzu_s7QHsmdE5OcDE1SENpT1g2R2JEX2tnZ3ZIWHc&output=html';
+      var public_spreadsheet_url = 'https://docs.google.com/spreadsheets/d/10MQ8nnYTIxSW7HM2VuV6sdCsX-XMYYlo-kxFz8b7DuI/pubhtml';
+
+      $(document).ready( function() {
+        Tabletop.init( { key: public_spreadsheet_url,
+                         callback: showInfo,
+                         parseNumbers: true } );
+      });
+        
+      function showInfo(data, tabletop) {
+        var source   = $("#template").html();
+        var template = Handlebars.compile(source);
+
+        //$.each( tabletop.sheets("Cats").all(), function(i, cat) {
+        $.each( tabletop.sheets("Game Companies").all(), function(i, cat) {
+          var html = template(cat);
+          $("#content").append(html);
+        });
+      }
+    </script>
+  </body>
+</html>
