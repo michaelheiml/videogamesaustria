@@ -1,0 +1,20 @@
+{
+  "name": "videogamesaustria",
+  "version": "1.0.0",
+  "description": "Script for displaying VGA Company list managed via Google Spreadsheets",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/michaelheiml/videogamesaustria.git"
+  },
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/michaelheiml/videogamesaustria/issues"
+  },
+  "homepage": "https://github.com/michaelheiml/videogamesaustria",
+  "devDependencies": {
+    "bower": "^1.7.1",
+    "gulp": "^3.9.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-uglify": "^1.5.1"
+  }
+}
