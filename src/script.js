@@ -4,16 +4,29 @@ var public_spreadsheet_url = 'https://docs.google.com/spreadsheets/d/10MQ8nnYTIx
 $(document).ready( function() {
 	Tabletop.init( { key: public_spreadsheet_url,
 		callback: showInfo,
-		parseNumbers: true } );
+		parseNumbers: true,
+		wanted: ["Game Companies", "CG & VFX Companies"]
 	});
+	
+	$('#content').masonry({
+		itemSelector: '.entry'
+	});
+});
 
-	function showInfo(data, tabletop) {
+function showInfo(data, tabletop) {
 	var source   = $("#template").html();
 	var template = Handlebars.compile(source);
-
-	//$.each( tabletop.sheets("Cats").all(), function(i, cat) {
+	var $content = $('#content');
+	
 	$.each(tabletop.sheets("Game Companies").all(), function(i, cat) {
-		var html = template(cat);
-		$("#content").append(html);
+		if(!~cat.Contact.indexOf('@')) {
+			cat.Contact = '';
+		}
+		var html = $(template(cat));
+		
+		$content.masonry()
+			.append( html )
+			.masonry( 'appended', html )
+			.masonry();
 	});
 }

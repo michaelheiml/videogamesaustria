@@ -1,0 +1,12 @@
+{
+  "name": "videogamesaustria",
+  "description": "Script for displaying VGA Company list managed via Google Spreadsheets",
+  "authors": [],
+  "private": true,
+  "dependencies": {
+    "handlebars": "~4.0.5",
+    "jquery": "~2.1.4",
+    "masonry": "~3.3.2",
+    "tabletop": "~1.4.2"
+  }
+}
