@@ -17599,6 +17599,10 @@ function showInfo(data, tabletop) {
 		}
 		var html = $(template(cat));
 		
+		html.find('img').on('load', function() {
+			$content.masonry();
+		});
+		
 		$content.masonry()
 			.append( html )
 			.masonry( 'appended', html )
